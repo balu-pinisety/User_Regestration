@@ -1,9 +1,23 @@
 package com.regex;
-
+import java.util.Scanner;
 /**
  * @author BALU
- * 
+ * Ability to ask user details
+ * Calling validation to check for user input 
  */
 public class UserRegistration {
+	//Objects
+	static Details details = new Details();
+	static Scanner scanner = new Scanner(System.in);
+	
+ 	/**
+ 	 * Ability to ask user for his first name
+ 	 * Validates the user input by calling method
+ 	 */
+ 	public void userFirstName() {
+		System.out.println("Enter the First Name :");
+		details.setFirstName(scanner.next());
+		Validater.CheckFirstname(details);
+	}
 
 }
