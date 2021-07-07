@@ -16,6 +16,7 @@ public class MainRunner {
 		//Calling Methods
 		userRegistration.userFirstName();
 		userRegistration.userLastName();
+		userRegistration.userPhoneNumber();
 		userRegistration.userEmail();
 		userRegistration.userPassword();
 		
