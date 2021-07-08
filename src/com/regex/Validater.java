@@ -60,7 +60,7 @@ public class Validater {
 	 * @param details
 	 */
 	public static void CheckEmail(Details details ) { 
-		String check="^[a-z]+(\\.[a-zA-Z0-9]+)*@[a-z]{2,}\\.[a-z]{2,3}(\\.[a-z]{2,3})*$"; //Condition
+		String check="^[a-z]+[0-9]*([.+-][a-zA-Z0-9]+){0,1}@[a-z0-9]+\\.[a-z]{2,3}(\\.[a-z]{2,3}){0,1}$"; //Condition
 		Pattern pattern = Pattern.compile(check); //Assigning condition to compile
 		Matcher matcher = pattern.matcher(details.getEmail()); //Checking for Matching
 		boolean result = matcher.matches(); // Match result: True or False
@@ -96,19 +96,19 @@ public class Validater {
 	
 	/**
 	 * Ability to validate the user Phone Number with the condition
-	 * Condition: Country code followed by 10 digit number
+	 * Condition: Country code followed by space and 10 digit number
 	 * If it doesn't matches, asks user again to enter the number by calling method
 	 * @param details
 	 */
-	public static void CheckPhoneNumber(Details details ) { 
-		String check="^[9][1][6-9][0-9]{9}$";
+	public static void CheckPhoneNumber(Details details) { 
+		String check="[91]\\s[6-9][0-9]{9}";
 		Pattern pattern = Pattern.compile(check); //Assigning condition to compile
 		Matcher matcher = pattern.matcher(details.getPhoneNumber()); //Checking for Matching
 		boolean result = matcher.matches(); // Match result: True or False
 		if (result) {
 			System.out.println("Phone Number '"+details.getPhoneNumber()+"' is Valid and Saved to details");
 		} else {
-			System.out.println("\nInvalid Phone Number.\nMobile Number is of like Country code followed by 10 digit number");
+			System.out.println("\nInvalid Phone Number.\nMobile Number is of like Country code followed by space and 10 digit number");
 			userRegistration.userPhoneNumber(); //calling the method to ask user
 		}
 	}

@@ -56,7 +56,7 @@ public class UserRegistration {
  	 */
  	public void userPhoneNumber() {
 		System.out.println("\nEnter the Phone Number :");
-		details.setPhoneNumber(scanner.next());
+		details.setPhoneNumber(scanner.nextLine());
 		Validater.CheckPhoneNumber(details);
 	}
 
