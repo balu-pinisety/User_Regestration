@@ -18,50 +18,91 @@ public class UserRegistration {
 	/** Ability to ask user for his first name and Checks it */
 	public void userFirstName() {
 		System.out.println("\nEnter the First Name:");
-		boolean result = validate.checkName(scanner.nextLine());
-		output(result);
-		if (result == false) userFirstName();
+		String string=scanner.nextLine();
+		try {
+			boolean result = validate.checkName(string);
+			if (result) System.out.println("Valid Input");
+			else if(string=="") throw new userException("Invalid Input");
+			else {
+				System.out.println("Invalid Input");
+				userFirstName();
+			}
+		} catch (userException | NullPointerException e) {
+			System.out.println(e.getMessage());
+			userFirstName();
+		}
 	}
 
 	/** Ability to ask user for his last name and Checks it */
 	public void userLastName() {
 		System.out.println("\nEnter the Last Name:");
-		boolean result = validate.checkName(scanner.nextLine());
-		output(result);
-		if (result == false) userLastName();
+		String string=scanner.nextLine();
+		try {
+			boolean result = validate.checkName(string);
+			if (result) System.out.println("Valid Input");
+			else if(string=="") throw new userException("Invalid Input");
+			else {
+				System.out.println("Invalid Input");
+				userLastName();
+			}
+		} catch (userException | NullPointerException e) {
+			System.out.println(e.getMessage());
+			userLastName();
+		}
 	}
 
 	/** Ability to ask user for his E-mail and checks it */
 	public void userEmail() {
 		System.out.println("\nEnter the E-mail :");
-		boolean result = validate.checkEmail(scanner.nextLine());
-		output(result);
-		if (result == false) userEmail();
+		String string=scanner.nextLine();
+		try {
+			boolean result = validate.checkEmail(string);
+			if (result) System.out.println("Valid Input");
+			else if(string=="") throw new userException("Invalid Input");
+			else {
+				System.out.println("Invalid Input");
+				userEmail();
+			}
+		} catch (userException | NullPointerException e) {
+			System.out.println(e.getMessage());
+			userEmail();
+		}
 	}
 	
 	/** Ability to ask user for his Phone Number and checks it */
 	public void userPhoneNumber() {
 		System.out.println("\nEnter the Phone Number :");
-		boolean result = validate.checkMobileNumber(scanner.nextLine());
-		output(result);
-		if (result == false) userPhoneNumber();
+		String string=scanner.nextLine();
+		try {
+			boolean result = validate.checkMobileNumber(string);
+			if (result) System.out.println("Valid Input");
+			else if(string=="") throw new userException("Invalid Input");
+			else {
+				System.out.println("Invalid Input");
+				userPhoneNumber();
+			}
+		} catch (userException | NullPointerException e) {
+			System.out.println(e.getMessage());
+			userPhoneNumber();
+		}
 	}
 	
 	/** Ability to ask user for new Password and check it */
 	public void userPassword() {
 		System.out.println("\nEnter the Password :");
-		boolean result = validate.checkPassword(scanner.nextLine());
-		output(result);
-		if (result == false) userPassword();
-	}
-	
-	/** Ability to print valid or not based on result */
-	public void output(boolean result) {
+		String string=scanner.nextLine();
 		try {
+			boolean result = validate.checkPassword(string);
 			if (result) System.out.println("Valid Input");
-			else throw new userException("Invalid Input");
+			else if(string=="") throw new userException("Invalid Input");
+			else {
+				System.out.println("Invalid Input");
+				userPassword();
+			}
 		} catch (userException | NullPointerException e) {
 			System.out.println(e.getMessage());
+			userPassword();
 		}
 	}
+	
 }

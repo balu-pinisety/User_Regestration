@@ -6,6 +6,11 @@ package com.regex;
  */
 public class userException extends Exception {
 
+	private String message;
+	
+	public String getMessage() {
+		return "Enter the letters";
+	}
 	public userException(String message) {
 		super(message);
 	}
