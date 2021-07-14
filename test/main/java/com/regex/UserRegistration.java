@@ -2,8 +2,6 @@ package main.java.com.regex;
 
 import java.util.Scanner;
 
-import com.regex.userException;
-
 /**
  * @author BALU
  * Ability to ask user details 
