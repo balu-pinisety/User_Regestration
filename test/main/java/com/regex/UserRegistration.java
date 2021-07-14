@@ -1,6 +1,7 @@
 package main.java.com.regex;
 
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 /**
  * @author BALU
@@ -11,96 +12,47 @@ public class UserRegistration {
 	
 	// Objects
 	static Scanner scanner = new Scanner(System.in);
-	static Validater validate = new Validater();
 
-	/** Ability to ask user for his first name and Checks it */
-	public void userFirstName() {
+	public void userInput() {
+		//variables for pattern
+		String name = "[A-Z]{1}[a-z]{2,}"; // Name Condition
+		String eMail = "^[a-z]+[0-9]*([.+-][a-zA-Z0-9]+){0,1}@[a-z0-9]+\\.[a-z]{2,3}(\\.[a-z]{2,3}){0,1}$"; // Email Condition
+		String mobileNumber = "[+]{0,1}[9][1][ -]{0,1}[6-9][0-9]{9}"; //Mobile Number Condition
+		String password = "^(?=.*[@#$%^&+=])(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$"; // Password Condition
+		
 		System.out.println("\nEnter the First Name:");
-		String string=scanner.nextLine();
-		try {
-			boolean result = validate.checkName(string);
-			if (result) System.out.println("Valid Input");
-			else if(string=="") throw new userException("Invalid Input");
-			else {
-				System.out.println("Invalid Input");
-				userFirstName();
-			}
-		} catch (userException | NullPointerException e) {
-			System.out.println(e.getMessage());
-			userFirstName();
-		}
-	}
+		String fisrtName=scanner.nextLine();
+		validate(fisrtName,name);
 
-	/** Ability to ask user for his last name and Checks it */
-	public void userLastName() {
 		System.out.println("\nEnter the Last Name:");
-		String string=scanner.nextLine();
-		try {
-			boolean result = validate.checkName(string);
-			if (result) System.out.println("Valid Input");
-			else if(string=="") throw new userException("Invalid Input");
-			else {
-				System.out.println("Invalid Input");
-				userLastName();
-			}
-		} catch (userException | NullPointerException e) {
-			System.out.println(e.getMessage());
-			userLastName();
-		}
-	}
+		String lastName=scanner.nextLine();
+		validate(lastName,name);
 
-	/** Ability to ask user for his E-mail and checks it */
-	public void userEmail() {
 		System.out.println("\nEnter the E-mail :");
-		String string=scanner.nextLine();
-		try {
-			boolean result = validate.checkEmail(string);
-			if (result) System.out.println("Valid Input");
-			else if(string=="") throw new userException("Invalid Input");
-			else {
-				System.out.println("Invalid Input");
-				userEmail();
-			}
-		} catch (userException | NullPointerException e) {
-			System.out.println(e.getMessage());
-			userEmail();
-		}
-	}
+		String mail=scanner.nextLine();
+		validate(mail,eMail);
 	
-	/** Ability to ask user for his Phone Number and checks it */
-	public void userPhoneNumber() {
 		System.out.println("\nEnter the Phone Number :");
-		String string=scanner.nextLine();
-		try {
-			boolean result = validate.checkMobileNumber(string);
-			if (result) System.out.println("Valid Input");
-			else if(string=="") throw new userException("Invalid Input");
-			else {
-				System.out.println("Invalid Input");
-				userPhoneNumber();
-			}
-		} catch (userException | NullPointerException e) {
-			System.out.println(e.getMessage());
-			userPhoneNumber();
-		}
-	}
+		String phoneNumber=scanner.nextLine();
+		validate(phoneNumber,mobileNumber);
 	
-	/** Ability to ask user for new Password and check it */
-	public void userPassword() {
 		System.out.println("\nEnter the Password :");
-		String string=scanner.nextLine();
-		try {
-			boolean result = validate.checkPassword(string);
-			if (result) System.out.println("Valid Input");
-			else if(string=="") throw new userException("Invalid Input");
-			else {
-				System.out.println("Invalid Input");
-				userPassword();
-			}
-		} catch (userException | NullPointerException e) {
-			System.out.println(e.getMessage());
-			userPassword();
-		}
+		String pass=scanner.nextLine();
+		validate(pass,password);
+		
 	}
 	
+	public void validate(String userInput, String condition) {
+		  boolean isValid = isDataValid(userInput,(String info) -> {
+	                    return info.matches(condition);
+	                });
+
+	        System.out.println("the provided input is " + isValid);
+
+	    }
+	
+	private boolean isDataValid(String data, Predicate<String> predicate) {
+		return predicate.test(data);
+	}
+		
 }
